@@ -1,0 +1,70 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<section class="hero-banner">
+    <img src="~/Images/Banner/BannerIndex.jpg" class="hero-img" alt="پن‌مارت">
+    <div class="banner-text">
+        <h1>با پن‌مارت، خلاقیتت رو روی کاغذ بیار ✏️</h1>
+        <p>لوازم تحریر ایرانی با طراحی زیبا و الهام‌بخش</p>
+        <a href="/Product" class="btn btn-primary btn-lg mt-3">مشاهده محصولات</a>
+    </div>
+</section>
+
+
+<style>
+    .hero-banner {
+        position: relative;
+        height: 45vh;
+        width: 100%;
+      
+        overflow: hidden;
+        border-radius: 0 0 40px 40px;
+    }
+
+    .hero-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* 👈 عکس کامل بدون برش */
+        object-position: center;
+        display: block;
+        background-color: #f9f9f9; /* اگر فضای خالی موند رنگ ملایم بیاد */
+    }
+
+    .banner-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        background: rgba(255, 255, 255, 0.7);
+        padding: 25px 50px;
+        border-radius: 25px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+        .banner-text h1 {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .banner-text p {
+            font-size: 16px;
+            color: #555;
+            margin-top: 10px;
+        }
+
+        .banner-text .btn {
+            background-color: #5bc0de;
+            border: none;
+        }
+
+            .banner-text .btn:hover {
+                background-color: #31b0d5;
+            }
+
+</style>
+
+
+@await Component.InvokeAsync("ProductCategoryComponent", new { view = "ProductCategoryComponent" })

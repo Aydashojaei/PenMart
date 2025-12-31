@@ -1,0 +1,58 @@
+﻿<div class="category-box p-3 rounded">
+    <h5 class="mb-3 text-primary fw-bold">دسته‌بندی‌ها</h5>
+
+    <ul class="list-unstyled m-0">
+        @foreach (var cat in Model)
+        {
+            <li class="mb-2">
+                <a asp-controller="Product"
+                   asp-action="ShowProductByCategoryId"
+                   asp-route-categoryId="@cat.Id"
+                   class="category-link d-flex align-items-center">
+
+                    <span class="icon me-2">📌</span>
+                    @cat.CategoryName
+                </a>
+            </li>
+        }
+    </ul>
+</div>
+<style>
+    .sidebar-box {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 15px;
+        border: 1px solid #e5e5e5;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        position: sticky;
+        top: 100px;
+    }
+
+    .sidebar-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #007bff;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #007bff30;
+        margin-bottom: 15px;
+    }
+
+    .sidebar-item {
+        padding: 8px 10px;
+        border-radius: 8px;
+        transition: 0.2s;
+        margin-bottom: 8px;
+    }
+
+        .sidebar-item:hover {
+            background: #f2f7ff;
+            padding-right: 14px;
+        }
+
+    .sidebar-icon {
+        font-size: 18px;
+        margin-left: 6px;
+    }
+
+
+</style>

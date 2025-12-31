@@ -1,0 +1,81 @@
+﻿@model PenMart.Models.RegistreViewModel
+@{
+    ViewData["Title"] = "ثبت‌نام";
+}
+
+<div class="login-container">
+    <div class="login-card shadow">
+        <h2 class="text-center mb-4">ثبت‌نام در پن‌مارت ✏️</h2>
+
+        <form asp-action="Register">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Email" class="form-label">ایمیل</label>
+                <input asp-for="Email" class="form-control" placeholder="example@gmail.com" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Password" class="form-label">رمز عبور</label>
+                <input asp-for="Password" type="password" class="form-control" placeholder="********" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="RePassword" class="form-label">تکرار رمز عبور</label>
+                <input id="RePassword" name="RePassword" type="password" class="form-control" placeholder="********" />
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">ثبت‌نام</button>
+
+            <p class="text-center mt-3">
+                حساب کاربری دارید؟
+                <a asp-action="Login" asp-controller="Account" class="text-primary">وارد شوید</a>
+            </p>
+        </form>
+    </div>
+</div>
+
+<style>
+    body {
+        background: linear-gradient(135deg, #eaf6fb, #f8fbfd);
+        font-family: 'Sahel', sans-serif;
+    }
+
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 90vh;
+    }
+
+    .login-card {
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .form-control {
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    .btn-primary {
+        background-color: #5bbad5;
+        border: none;
+        padding: 10px;
+        border-radius: 10px;
+        transition: 0.3s;
+    }
+
+        .btn-primary:hover {
+            background-color: #3aa6c5;
+        }
+
+    a.text-primary:hover {
+        text-decoration: underline;
+    }
+</style>

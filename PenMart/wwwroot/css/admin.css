@@ -1,0 +1,446 @@
+﻿/* ===========================
+   GLOBAL
+   =========================== */
+
+@import url('https://cdn.rawgit.com/rastikerdar/sahel-font/v1.0.0-alpha23/dist/font-face.css');
+
+body {
+    background: #f5f7fb;
+    font-family: 'Sahel', Tahoma, sans-serif;
+    direction: rtl;
+}
+
+/* پس‌زمینه کلی پنل ادمین – گرادینت ملایم ایندیگو/صورتی */
+.admin-layout {
+    background: linear-gradient(180deg, #eef2ff 0%, #ffffff 55%, #fdf2ff 100%);
+    min-height: 100vh;
+}
+
+/* ردیف اصلی (سایدبار + محتوا) */
+.layout-row {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+/* ===========================
+   SIDEBAR
+   =========================== */
+
+.sidebar {
+    background: rgba(248, 250, 252, 0.95);
+    padding: 20px;
+    border-radius: 24px;
+    box-shadow: 0 14px 40px rgba(15, 23, 42, 0.12);
+    height: 100vh;
+    width: 260px;
+    flex-shrink: 0;
+    margin-top: 20px;
+}
+
+.sidebar-title {
+    font-size: 20px;
+    margin-bottom: 25px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+    .sidebar-menu li {
+        margin-bottom: 10px;
+    }
+
+    .sidebar-menu a {
+        display: block;
+        padding: 10px 15px;
+        border-radius: 999px;
+        text-decoration: none;
+        color: #4b5563;
+        font-size: 14px;
+        transition: all 0.2s ease;
+    }
+
+        .sidebar-menu a:hover {
+            background-color: rgba(79, 70, 229, 0.08);
+            color: #1d4ed8;
+        }
+
+        .sidebar-menu a.active {
+            background: linear-gradient(90deg, #2563eb, #4f46e5);
+            color: #ffffff;
+            font-weight: 600;
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
+        }
+
+/* ===========================
+   MAIN CONTENT
+   =========================== */
+
+.main-content {
+    width: 100%;
+    padding: 24px;
+}
+
+/* ===========================
+   DASHBOARD CARDS
+   =========================== */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 20px;
+}
+
+@media (min-width: 768px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.stat-card {
+    background: #ffffff;
+    border-radius: 18px;
+    border: 1px solid #e5e7eb;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    transition: box-shadow .18s ease, transform .18s ease;
+}
+
+    .stat-card:hover {
+        box-shadow: 0 16px 40px rgba(148, 163, 184, 0.35);
+        transform: translateY(-2px);
+    }
+
+.stat-icon {
+    font-size: 36px;
+    color: #4f46e5;
+}
+
+.stat-card h3 {
+    margin: 0;
+    font-size: 26px;
+    color: #111827;
+    font-weight: 700;
+}
+
+.stat-card p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+/* ===========================
+   TABLES
+   =========================== */
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin-top:20px;
+}
+
+.admin-table {
+    width: 100%;
+    min-width: 900px;
+    border-collapse: collapse;
+    border-radius: 12px;
+    overflow: hidden;
+    font-size: 15px;
+    
+}
+
+    .admin-table thead {
+        background: linear-gradient(135deg, #4f46e5, #6366f1);
+        color: white;
+    }
+
+    .admin-table th,
+    .admin-table td {
+        padding: 12px 15px;
+        vertical-align: middle;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .admin-table tbody tr:hover {
+        background-color: #f3f4ff;
+    }
+
+.admin-img {
+    width: 100px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(15,23,42,0.35);
+}
+
+/* ===========================
+   ACTION BUTTONS (در جدول)
+   =========================== */
+
+.btn-action {
+    padding: 6px 12px;
+    border-radius: 999px;
+    color: white;
+    font-size: 13px;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.btn-edit {
+    background: #2563eb;
+}
+
+    .btn-edit:hover {
+        background: #1d4ed8;
+    }
+
+.btn-delete {
+    background: #ef4444;
+}
+
+    .btn-delete:hover {
+        background: #dc2626;
+    }
+
+.btn-action + .btn-action {
+    margin-right: 6px;
+}
+
+/* ===========================
+   BUTTON: افزودن محصول
+   =========================== */
+
+.cssbuttons-io-button {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 13px;
+    padding: 0.4em 1em;
+    color: white;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+    border: none;
+    border-radius: 0.9em;
+    box-shadow: 0 10px 25px rgba(79, 70, 229, 0.4);
+    transition: all 0.2s ease;
+    margin-bottom: 1em;
+}
+
+    .cssbuttons-io-button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 14px 30px rgba(79, 70, 229, 0.45);
+    }
+
+    .cssbuttons-io-button svg {
+        margin-right: 5px;
+    }
+
+/* ===========================
+   FORM / CARD (Create, Edit,…)
+   =========================== */
+
+.admin-card {
+    max-width: 1100px;
+    /*margin: px auto;*/
+    background: #ffffff;
+    border-radius: 24px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.18);
+    padding: 26px 28px 24px;
+    position: relative;
+    overflow: hidden;
+}
+
+    /* نوار رنگی بالای کارت */
+    .admin-card::before {
+        content: "";
+        position: absolute;
+        inset: 0 0 auto 0;
+        height: 6px;
+        background: linear-gradient(90deg, #4f46e5, #6366f1, #ec4899);
+    }
+
+/* عنوان صفحه داخل کارت */
+.admin-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+/* هدر کارت */
+.admin-page-header {
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 12px;
+    margin-bottom: 18px;
+}
+
+.admin-subtitle {
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
+/* بج نرم – اگر بخواهی بعداً استفاده کنی */
+.badge-soft-primary {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 0.9rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    background: rgba(79, 70, 229, 0.08);
+    color: #3730a3;
+    font-weight: 500;
+}
+
+/* تیتر بخش‌های فرم (مشخصات/تصاویر) */
+.form-section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.75rem;
+}
+
+    .form-section-title .title {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #111827;
+        white-space: nowrap;
+    }
+
+    .form-section-title .line {
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(90deg, #c7d2fe, transparent);
+    }
+
+    .form-section-title .hint {
+        font-size: 0.75rem;
+        color: #6b7280;
+    }
+
+/* ===========================
+   INPUTS / LABELS / FOOTER
+   =========================== */
+
+.form-label {
+    font-weight: 600;
+    color: #374151;
+    display: block;
+    text-align: right;
+    margin-bottom: 0.35rem;
+    font-size: 0.9rem;
+}
+
+.form-control,
+.form-select {
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    font-size: 0.95rem;
+    padding: 0.55rem 0.75rem;
+}
+
+.form-select-lg {
+    padding-top: 0.65rem;
+    padding-bottom: 0.65rem;
+    font-size: 1rem;
+}
+
+/* فوکوس رنگی روی فیلدها */
+.form-control:focus,
+.form-select:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25);
+}
+
+/* فوتر فرم: خط جدا + دکمه‌ها */
+.form-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.9rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+    margin-top: 0.5rem;
+}
+
+/* سایز کلی دکمه‌ها */
+.btn {
+    font-size: 0.9rem;
+    padding: 0.45rem 1.3rem;
+}
+
+/* ===========================
+   IMAGE UPLOAD GRID
+   =========================== */
+
+.image-upload-grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 12px;
+}
+
+@media (min-width: 768px) {
+    .image-upload-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.image-upload-box {
+    border-radius: 16px;
+    border: 1px dashed #c7d2fe;
+    background: linear-gradient(135deg, #f3e8ff, #e0f2fe);
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+    .image-upload-box .label-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 0.85rem;
+        color: #4b5563;
+        font-weight: 500;
+    }
+
+    .image-upload-box .file-input {
+        background: #ffffff;
+    }
+
+/* ===========================
+   BUTTON OVERRIDES
+   =========================== */
+
+.btn-primary {
+    background: linear-gradient(90deg, #2563eb, #4f46e5);
+    border: none;
+    border-radius: 999px;
+    font-weight: 600;
+    box-shadow: 0 14px 30px rgba(37, 99, 235, 0.35);
+}
+
+    .btn-primary:hover {
+        filter: brightness(1.05);
+        box-shadow: 0 18px 40px rgba(37, 99, 235, 0.45);
+    }
+
+.btn-outline-secondary {
+    border-radius: 999px;
+    border-color: #9ca3af;
+    color: #4b5563;
+}
+
+    .btn-outline-secondary:hover {
+        background-color: #e5e7eb;
+        color: #111827;
+    }
+
+

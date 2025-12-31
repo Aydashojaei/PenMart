@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
+    <link href="~/bootstrap-v4-rtl-master/dist/css/bootstrap-rtl.css" rel="stylesheet" />
+    <link href="https://cdn.rawgit.com/rastikerdar/sahel-font/v1.0.0-alpha23/dist/font-face.css" rel="stylesheet" type="text/css" />
+
+
+    @* <link rel="stylesheet" href="~/css/site.css" /> *@
+
+    <style>
+        body, header {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+
+
+</head>
+<body class="rtl " style="font-family: Sahel,sans-serif;">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
+            <div class="container">
+                <!-- لوگو یا نام برند -->
+                <a class="navbar-brand fw-bold text-primary" asp-controller="Home" asp-action="Index">
+                    🖋️ پن‌مارت
+                </a>
+
+                <!-- دکمه باز شدن منو در موبایل -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- لینک‌ها -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark fw-semibold" asp-controller="Home" asp-action="Index">خانه</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark fw-semibold" asp-controller="Home" asp-action="ContactUs">تماس با ما</a>
+                        </li>
+                    </ul>
+
+                    @if(User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark">@User.Identity.Name خوش آمدید!</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark fw-semibold" asp-controller="Account" asp-action="LogOut">خروج</a>
+                        </li>
+                    }
+                    else
+                    {
+                        
+                    <!-- بخش ورود / حساب کاربری -->
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="btn btn-outline-primary rounded-pill px-4 fw-semibold"
+                               asp-controller="Account" asp-action="Login">
+                                ورود / ثبت‌نام
+                            </a>
+                        </li>
+                    </ul>
+                        
+                    }
+
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <style>
+        .navbar {
+            font-family: 'Sahel', sans-serif;
+            background-color: #f8fbfd;
+        }
+
+        .navbar-brand {
+            font-size: 1.4rem;
+        }
+
+        .nav-link {
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+            .nav-link:hover {
+                color: #3aa6c5 !important;
+            }
+
+        .btn-outline-primary {
+            border-color: #5bbad5;
+            color: #5bbad5;
+            transition: 0.3s;
+        }
+
+            .btn-outline-primary:hover {
+                background-color: #5bbad5;
+                color: #fff;
+            }
+    </style>
+    <div class="container-fluid p-0 m-0" style="min-height:100vh;">
+        <main role="main" class="p-0 m-0">
+            @RenderBody()
+        </main>
+    </div>
+   
+
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2025 - MyHavanaShop - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

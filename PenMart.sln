@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35825.156
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PenMart", "PenMart\PenMart.csproj", "{7D396525-2C04-4419-A82C-96E480C1FFC5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7D396525-2C04-4419-A82C-96E480C1FFC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D396525-2C04-4419-A82C-96E480C1FFC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D396525-2C04-4419-A82C-96E480C1FFC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D396525-2C04-4419-A82C-96E480C1FFC5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {95B25CCB-4C9B-4A33-A593-C2B4BF151FDB}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.6.0/css/bootstrap.min.css">
+    <link href="~/css/admin.css" rel="stylesheet" />
+    @*  @* <link href="~/bootstrap-v4-rtl-master/dist/css/bootstrap-rtl.css" rel="stylesheet" /> *@ 
+    @* <link href="https://cdn.rawgit.com/rastikerdar/sahel-font/v1.0.0-alpha23/dist/font-face.css" rel="stylesheet" type="text/css" /> 
+ *@
+    <title>@ViewData["Title"]</title>
+</head>
+<body class="admin-layout">
+    <div class="container-fluid">
+        <div class="row layout-row">
+
+            <!-- Sidebar (RIGHT side on desktop) -->
+            <aside class="col-12 col-md-3 order-2 order-md-1">
+                <div class="sidebar">
+                    <h4 class="sidebar-title">پنل مدیریت</h4>
+                    <ul class="sidebar-menu list-unstyled">
+                        <li><a href="/admin" class="active d-block py-1">داشبورد</a></li>
+                        <li><a asp-page="/Admin/ManageProduct/Index" class="d-block py-1">محصولات</a></li>
+                        <li><a href="/admin/categories" class="d-block py-1">دسته‌بندی‌ها</a></li>
+                        <li><a href="/admin/users" class="d-block py-1">کاربران</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Main content (LEFT side on desktop) -->
+            <main class="col-12 col-md-9 order-1 order-md-2 main-content">
+                @RenderBody()
+            </main>
+
+        </div>
+
+        @RenderSection("Scripts", required: false)
+      
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.6.0/js/bootstrap.min.js"></script>
+</body>
+</html>

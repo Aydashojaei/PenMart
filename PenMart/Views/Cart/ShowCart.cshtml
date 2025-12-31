@@ -1,0 +1,115 @@
+﻿@model Order
+
+<section class="h-100">
+    <div class="container h-100 py-5">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-10 col-md-12">
+
+                <h3 class="fw-bold text-right mb-4">🛒 سبد خرید</h3>
+
+               @if(Model!=null)
+                {
+                    @foreach (var item in Model.orderDetails)
+                    {
+                        <div class="card mb-3 shadow-sm border-0">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+
+                                    <!-- عکس محصول -->
+                                    <div class="col-md-2 col-5 text-center">
+                                        <img src="@Url.Content(item.product.MainImageUrl)"
+                                             alt="@item.product.Name"
+                                             class="img-fluid rounded shadow-sm"
+                                             style="max-height:120px; object-fit:contain;">
+                                    </div>
+
+                                    <!-- توضیحات محصول -->
+                                    <div class="col-md-4 col-7 text-right">
+                                        <h5 class="mb-1 text-primary">@item.product.Name</h5>
+                                        <p class="text-dark mb-0 fw-bold">
+                                            قیمت: @item.Price.ToString("N0") تومان
+                                        </p>
+                                    </div>
+
+                                    <!-- تعداد -->
+                                    <div class="col-md-3 col-6 d-flex align-items-center justify-content-center">
+                                        <button class="btn btn-outline-secondary btn-sm mx-1">−</button>
+                                        <span>@item.Count</span>
+                                        <button class="btn btn-outline-secondary btn-sm mx-1">+</button>
+                                    </div>
+
+                                    <!-- مجموع -->
+                                    <div class="col-md-2 col-6 text-center">
+                                        <span class="fw-bold text-success">
+                                            @(item.Count* item.Price) تومان
+                                        </span>
+                                    </div>
+
+                                    <!-- حذف -->
+                                    <div class="col-md-1 text-center">
+                                        <a  class="text-danger" asp-action="RemoveCart" asp-route-detailId="@item.DetailId"><i class="fas fa-trash-alt"></i>حذف</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    <!-- جمع کل -->
+                    <div class="card mt-4 shadow-sm border-0">
+                        <div class="card-body text-right">
+                            <h5 class="fw-bold">
+                                جمع کل:
+                                <span class="text-success">
+                                    @Model.orderDetails.Sum(s => s.Count * s.Price) تومان
+                                </span>
+                            </h5>
+
+                            <div class="text-left mt-3">
+                                <button class="btn btn-warning px-5 fw-bold">ادامه به پرداخت</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                else
+                {
+                               
+                    
+
+                        <div class="alert alert-info text-center">
+                            سبد خرید شما خالی است ☕
+                        </div>
+                    
+                }
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    body {
+        direction: rtl;
+        text-align: right;
+    }
+
+    .card {
+        background-color: #fdfdfd;
+        border-radius: 15px;
+    }
+
+    .btn-warning {
+        background-color: #ffc107;
+        border: none;
+        color: #222;
+        transition: all 0.3s;
+    }
+
+        .btn-warning:hover {
+            background-color: #ffb300;
+            color: #000;
+        }
+</style>
+
+        

@@ -1,0 +1,43 @@
+﻿@page
+@model PenMart.Pages.Admin.IndexModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "داشبورد";
+}
+<h1 class="dashboard-title">داشبورد</h1>
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+                <div class="stat-icon">👤</div>
+                <div>
+                    <h3>@Model.userCount</h3>
+                    <p>کاربران</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">📦</div>
+                <div>
+                    <h3>@Model.productCount</h3>
+                    <p>محصولات</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">📁</div>
+                <div>
+                    <h3>@Model.categorycount</h3>
+                    <p>دسته بندی ها</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">🧾</div>
+                <div>
+                    <h3>@Model.orderCount</h3>
+                    <p>سفارش ها</p>
+                </div>
+            </div>
+
+        </div>

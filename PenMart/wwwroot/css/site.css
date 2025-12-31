@@ -1,0 +1,119 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+/* گرید فرم در صفحه افزودن محصول */
+.admin-form-grid {
+    max-width: 900px; /* عرض منطقی فرم */
+    margin: 0 auto; /* وسط کارت */
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* دو ستون */
+    gap: 16px 24px; /* فاصله بین فیلدها */
+}
+
+/* هر فیلد یک گروه مستقل */
+.admin-form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* فیلدهایی که باید تمام عرض را بگیرند (یک ردیف کامل) */
+.admin-form-group-full {
+    grid-column: 1 / -1;
+}
+
+/* لیبل‌ها راست‌چین و مرتب (همین کلاس را از قبل داشتی، تأییدش می‌کنیم) */
+.form-label {
+    font-weight: 500;
+    color: #374151;
+    display: block;
+    text-align: right;
+    margin-bottom: 0.25rem;
+}
+
+/* دکمه‌ها سمت چپ (چون کل صفحه RTL است) */
+.admin-form-group-full.text-left {
+    text-align: left;
+}
+
+/* واکنش‌گرا: روی موبایل تک‌ستونه شود */
+@media (max-width: 768px) {
+    .admin-form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+

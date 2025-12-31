@@ -1,0 +1,90 @@
+﻿@{
+    ViewData["Title"] = "تماس با ما";
+}
+
+<div style="background-color:#fffaf3; min-height:100vh; width:100%; margin:0; padding:0;" dir="rtl">
+    <div class="text-center py-2">
+        <h1 class="font-weight-bold mb-3">تماس با ما</h1>
+        <p class="text-muted">از طریق یکی از روش‌های زیر با ما در ارتباط باشید</p>
+    </div>
+
+    <div class="container">
+        <div class="row text-center">
+
+            <!-- کارت اول -->
+            <div class="col-md-4 mb-4">
+                <div class="card custom-card " style=" height:200px">
+                    <div class="card-body">
+                        <img src="/Images/ContactUs/call.png" alt="تماس با ما"  style="width:100px; height:100px; margin-bottom:10px";  />
+                        <h5 class="card-title font-weight-bold">تماس با ما</h5>
+                        <p class="card-text mb-1">021-444567</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- کارت دوم -->
+            <div class="col-md-4 mb-4">
+                <div class="card custom-card" style=" height:200px">
+                    <div class="card-body">
+                        <img src="~/Images/ContactUs/Loc.png" alt="موقعیت ما" style="width:100px; height:100px; margin-bottom:10px" />
+                        <h5 class="card-title font-weight-bold">موقعیت ما</h5>
+                        <p class="card-text">تهران،قیطریه،خیابان خراسانی</p>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- کارت سوم -->
+            <div class="col-md-4 mb-4">
+                <div class="card custom-card " style=" height:200px">
+                    <div class="card-body">
+                        <img src="/Images/ContactUs/clock.png" alt="ساعت کاری" style="width:100px; height:110px; margin-bottom:10px" />
+                        <h5 class="card-title font-weight-bold">ساعات کاری</h5>
+                        <p class="card-text" style="line-height:0.5">شنبه تا پنجشنبه</p>
+                        @* <p class="card-text" style="line-height:0.2">8صبح تا 9 شب</p> *@
+                    </div>
+                </div>
+            </div>
+
+            <!-- کارت چهارم (واتساپ) -->
+            <div class="col-md-12 mb-4">
+                <div class="card custom-card">
+                    <div class="card-body">
+                        <img src="~/Images/ContactUs/watsapp.jpg" alt="واتساپ" style="width:120px; height:120px; margin-bottom:10px" />
+                        <h5 class="card-title font-weight-bold">سفارش و مشاوره در واتساپ</h5>
+                        <p class="card-text">
+                            برای سفارش و مشاوره فوری، از طریق شماره‌ی
+                            <span class="font-weight-bold">09124561720</span>
+                            به ما در واتساپ پیام دهید.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    .custom-card {
+        border: none;
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        transition: transform 0.2s ease;
+        background: #fff;
+       
+       
+    }
+
+        .custom-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+        }
+
+        .custom-card .icon span {
+            display: inline-block;
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 50%;
+        }
+</style>
