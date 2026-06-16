@@ -49,18 +49,38 @@
 
                     @if(User.Identity.IsAuthenticated)
                     {
-                        <li class="nav-item">
-                            <a class="nav-link text-dark">@User.Identity.Name خوش آمدید!</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark fw-semibold" asp-controller="Account" asp-action="LogOut">خروج</a>
-                        </li>
+                        <ul class="navbar-nav align-items-center">
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="btn btn-sm btn-warning rounded-pill px-3 ml-2 fw-semibold"
+                                       asp-controller="Admin" asp-action="Index">
+                                        🛠️ پنل مدیریت
+                                    </a>
+                                </li>
+                            }
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Cart" asp-action="ShowCart">
+                                    🛒 سبد خرید
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Cart" asp-action="MyOrders">
+                                    📦 سفارشات من
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-muted small">@User.Identity.Name</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark fw-semibold"
+                                   asp-controller="Account" asp-action="LogOut">خروج</a>
+                            </li>
+                        </ul>
                     }
                     else
                     {
-                        
-                    <!-- بخش ورود / حساب کاربری -->
+                    <!-- Login / Register section -->
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="btn btn-outline-primary rounded-pill px-4 fw-semibold"
@@ -69,7 +89,6 @@
                             </a>
                         </li>
                     </ul>
-                        
                     }
 
 
@@ -116,9 +135,9 @@
    
 
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - MyHavanaShop - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="border-top footer text-muted py-3">
+        <div class="container text-center">
+            &copy; 1404 - پن‌مارت | تمامی حقوق محفوظ است
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
