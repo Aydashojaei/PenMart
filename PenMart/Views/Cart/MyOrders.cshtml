@@ -1,0 +1,101 @@
+@model IEnumerable<PenMart.Models.Order>
+@{
+    ViewData["Title"] = "سفارشات من";
+}
+
+<div class="container my-5">
+
+    <h4 class="fw-bold mb-4">📦 سفارشات من</h4>
+
+    @if (!Model.Any())
+    {
+        <div class="empty-box text-center py-5 rounded-4">
+            <div style="font-size:3.5rem;">🛍️</div>
+            <p class="text-muted mt-3">هنوز سفارشی ثبت نکرده‌اید.</p>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-primary rounded-pill px-4 mt-2">
+                شروع خرید
+            </a>
+        </div>
+    }
+    else
+    {
+        @foreach (var order in Model)
+        {
+            var total = order.orderDetails?.Sum(d => d.Count * d.Price) ?? 0;
+            <div class="order-card mb-4 rounded-4 p-4">
+
+                <!-- هدر سفارش -->
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <span class="fw-bold">سفارش شماره #@order.OrderId</span>
+                        <small class="text-muted mr-3">@order.CreatDate.ToString("yyyy/MM/dd")</small>
+                    </div>
+                    <span class="badge-finalized">✅ نهایی شده</span>
+                </div>
+
+                <!-- آیتم‌های سفارش -->
+                <div class="row g-2 mb-3">
+                    @foreach (var item in order.orderDetails)
+                    {
+                        <div class="col-auto">
+                            <div class="d-flex align-items-center order-item">
+                                <img src="@Url.Content(item.product?.MainImageUrl ?? "/Images/no-image.png")"
+                                     class="order-item-img ml-2" />
+                                <div>
+                                    <div class="small fw-semibold">@item.product?.Name</div>
+                                    <div class="small text-muted">@item.Count عدد</div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <!-- جمع کل -->
+                <div class="d-flex justify-content-between align-items-center">
+                    <small class="text-muted">@(order.orderDetails?.Sum(d => d.Count) ?? 0) آیتم</small>
+                    <span class="fw-bold text-success">
+                        جمع کل: @total.ToString("N0") تومان
+                    </span>
+                </div>
+
+            </div>
+        }
+    }
+
+</div>
+
+<style>
+    .order-card {
+        background: #fff;
+        border: 1px solid #eee;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .badge-finalized {
+        background: #e8f5e9;
+        color: #2e7d32;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.82rem;
+    }
+
+    .order-item {
+        background: #f8fafb;
+        border-radius: 10px;
+        padding: 8px 12px;
+    }
+
+    .order-item-img {
+        width: 48px;
+        height: 48px;
+        object-fit: contain;
+        border-radius: 8px;
+        border: 1px solid #eee;
+        background: white;
+    }
+
+    .empty-box {
+        background: #f8fafb;
+        border: 1px dashed #ccc;
+    }
+</style>

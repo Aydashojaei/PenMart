@@ -1,0 +1,64 @@
+@model PenMart.Models.Order
+@{
+    ViewData["Title"] = "سفارش ثبت شد";
+    var total = Model.orderDetails?.Sum(d => d.Count * d.Price) ?? 0;
+}
+
+<div class="container my-5">
+    <div class="success-box text-center mx-auto rounded-4 p-5" style="max-width:600px;">
+
+        <div class="success-icon mb-4">✅</div>
+        <h3 class="fw-bold text-success mb-2">سفارش شما ثبت شد!</h3>
+        <p class="text-muted mb-4">
+            سفارش شماره <strong>#@Model.OrderId</strong> با موفقیت ثبت شد.
+            <br />
+            در اسرع وقت با شما تماس خواهیم گرفت.
+        </p>
+
+        <!-- جزئیات سفارش -->
+        <div class="order-detail-box text-right p-4 rounded-3 mb-4">
+            @foreach (var item in Model.orderDetails)
+            {
+                <div class="d-flex justify-content-between mb-2">
+                    <span>@item.product?.Name × @item.Count</span>
+                    <span class="text-success fw-bold">@((item.Count * item.Price).ToString("N0")) تومان</span>
+                </div>
+            }
+            <hr />
+            <div class="d-flex justify-content-between fw-bold">
+                <span>جمع کل:</span>
+                <span class="text-success">@total.ToString("N0") تومان</span>
+            </div>
+        </div>
+
+        <div class="d-flex gap-3 justify-content-center">
+            <a asp-controller="Cart" asp-action="MyOrders"
+               class="btn btn-outline-primary rounded-pill px-4">
+                سفارشات من
+            </a>
+            <a asp-controller="Home" asp-action="Index"
+               class="btn btn-primary rounded-pill px-4">
+                بازگشت به خانه
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<style>
+    .success-box {
+        background: #fff;
+        border: 1px solid #eee;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    }
+
+    .success-icon {
+        font-size: 4rem;
+    }
+
+    .order-detail-box {
+        background: #f8fafb;
+        border: 1px solid #e3eaf0;
+        font-size: 0.95rem;
+    }
+</style>
