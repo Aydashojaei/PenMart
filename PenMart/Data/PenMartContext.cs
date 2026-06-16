@@ -245,45 +245,41 @@ namespace PenMart.Data
             #region SeedData ProductImage
             modelBuilder.Entity<ProductImage>()
                 .HasData(
-               new ProductImage() { Id = 1, Url = "/Images/bic1.jpg", IsMain = true, ProductId = 1 },
-               new ProductImage() { Id = 2, Url = "/Images/bic2.jpg", IsMain = false, ProductId = 1 },
-               new ProductImage() { Id = 3, Url = "/Images/bic3.jpg", IsMain = false, ProductId = 1 },
+               new ProductImage() { Id = 1, Url = "/Images/Products/bic1.jpg", IsMain = true, ProductId = 1 },
+               new ProductImage() { Id = 2, Url = "/Images/Products/bic2.jpg", IsMain = false, ProductId = 1 },
+               new ProductImage() { Id = 3, Url = "/Images/Products/bic3.jpg", IsMain = false, ProductId = 1 },
 
+                 new ProductImage() { Id = 4, Url = "/Images/Products/faber1.jpg", IsMain = true, ProductId = 2 },
+                   new ProductImage() { Id = 5, Url = "/Images/Products/faber2.jpg", IsMain = false, ProductId = 2 },
+                     new ProductImage() { Id = 6, Url = "/Images/Products/faber3.jpg", IsMain = false, ProductId = 2 },
 
-                 new ProductImage() { Id = 4, Url = "/Images/faber1.jpg", IsMain = true, ProductId = 2 },
-                   new ProductImage() { Id = 5, Url = "/Images/faber2.jpg", IsMain = false, ProductId = 2 },
-                     new ProductImage() { Id = 6, Url = "/Images/faber3.jpg", IsMain = false, ProductId = 2 },
+                       new ProductImage() { Id = 7, Url = "/Images/Products/ravannevis1.png", IsMain = true, ProductId = 3 },
+                         new ProductImage() { Id = 8, Url = "/Images/Products/ravannevis2.jpg", IsMain = false, ProductId = 3 },
+                           new ProductImage() { Id = 9, Url = "/Images/Products/ravannevis3.jpg", IsMain = false, ProductId = 3 },
 
+                            new ProductImage() { Id = 10, Url = "/Images/Products/daftar1.jpg", IsMain = true, ProductId = 4 },
+                         new ProductImage() { Id = 11, Url = "/Images/Products/daftar2.jpg", IsMain = false, ProductId = 4 },
+                           new ProductImage() { Id = 12, Url = "/Images/Products/daftar3.jpg", IsMain = false, ProductId = 4 },
 
-                       new ProductImage() { Id = 7, Url = "/Images/ravannevis1.png", IsMain = true, ProductId = 3 },
-                         new ProductImage() { Id = 8, Url = "/Images/ravannevis2.jpg", IsMain = false, ProductId = 3 },
-                           new ProductImage() { Id = 9, Url = "/Images/ravannevis3.jpg", IsMain = false, ProductId = 3 },
+                             new ProductImage() { Id = 13, Url = "/Images/Products/daftarche1.jpg", IsMain = true, ProductId = 5 },
+                         new ProductImage() { Id = 14, Url = "/Images/Products/daftarche2.jpg", IsMain = false, ProductId = 5 },
+                           new ProductImage() { Id = 15, Url = "/Images/Products/daftarche3.jpg", IsMain = false, ProductId = 5 },
 
-                            new ProductImage() { Id = 10, Url = "/Images/daftar1.jpg", IsMain = true, ProductId = 4 },
-                         new ProductImage() { Id = 11, Url = "/Images/daftar2.jpg", IsMain = false, ProductId = 4 },
-                           new ProductImage() { Id = 12, Url = "/Images/daftar3.jpg", IsMain = false, ProductId = 4 },
+                                  new ProductImage() { Id = 16, Url = "/Images/Products/daftarzaban1.jpg", IsMain = true, ProductId = 6 },
+                         new ProductImage() { Id = 17, Url = "/Images/Products/daftarzaban2.jpg", IsMain = false, ProductId = 6 },
+                           new ProductImage() { Id = 18, Url = "/Images/Products/daftarzaban3.jpg", IsMain = false, ProductId = 6 },
 
-                             new ProductImage() { Id = 13, Url = "/Images/daftarche1.jpg", IsMain = true, ProductId = 5 },
-                         new ProductImage() { Id = 14, Url = "/Images/daftarche2.jpg", IsMain = false, ProductId = 5 },
-                           new ProductImage() { Id = 15, Url = "/Images/daftarche3.jpg", IsMain = false, ProductId = 5 },
+                           new ProductImage() { Id = 19, Url = "/Images/Products/guash1.jpg", IsMain = true, ProductId = 7 },
+                         new ProductImage() { Id = 20, Url = "/Images/Products/guash2.jpg", IsMain = false, ProductId = 7 },
+                           new ProductImage() { Id = 21, Url = "/Images/Products/guash3.jpg", IsMain = false, ProductId = 7 },
 
-                                  new ProductImage() { Id = 16, Url = "/Images/daftarzaban1.jpg", IsMain = true, ProductId = 6 },
-                         new ProductImage() { Id = 17, Url = "/Images/daftarzaban2.jpg", IsMain = false, ProductId = 6 },
-                           new ProductImage() { Id = 18, Url = "/Images/daftarzaban3.jpg", IsMain = false, ProductId = 6 },
+                              new ProductImage() { Id = 22, Url = "/Images/Products/abrang1.jpg", IsMain = true, ProductId = 8 },
+                         new ProductImage() { Id = 23, Url = "/Images/Products/abrang2.jpg", IsMain = false, ProductId = 8 },
+                           new ProductImage() { Id = 24, Url = "/Images/Products/abrang3.jpg", IsMain = false, ProductId = 8 },
 
-                           new ProductImage() { Id = 19, Url = "/Images/guash1.jpg", IsMain = true, ProductId = 7 },
-                         new ProductImage() { Id = 20, Url = "/Images/guash2.jpg", IsMain = false, ProductId = 7 },
-                           new ProductImage() { Id = 21, Url = "/Images/guash3.jpg", IsMain = false, ProductId = 7 },
-
-                              new ProductImage() { Id = 22, Url = "/Images/abrang1.jpg", IsMain = true, ProductId = 8 },
-                         new ProductImage() { Id = 23, Url = "/Images/abrang2.jpg", IsMain = false, ProductId = 8 },
-                           new ProductImage() { Id = 24, Url = "/Images/abrang3.jpg", IsMain = false, ProductId = 8 },
-
-                            new ProductImage() { Id = 25, Url = "/Images/palet1.jpg", IsMain = true, ProductId = 9 },
-                         new ProductImage() { Id = 26, Url = "/Images/palet2.jpg", IsMain = false, ProductId = 9 },
-                           new ProductImage() { Id = 27, Url = "/Images/palet3.jpg", IsMain = false, ProductId = 9 }
-
-
+                            new ProductImage() { Id = 25, Url = "/Images/Products/palet1.jpg", IsMain = true, ProductId = 9 },
+                         new ProductImage() { Id = 26, Url = "/Images/Products/palet2.jpg", IsMain = false, ProductId = 9 },
+                           new ProductImage() { Id = 27, Url = "/Images/Products/palet3.jpg", IsMain = false, ProductId = 9 }
                );
             #endregion
 
