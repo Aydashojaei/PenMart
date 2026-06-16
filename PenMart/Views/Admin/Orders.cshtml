@@ -1,0 +1,84 @@
+@model IEnumerable<PenMart.Models.Admin.AdminOrderViewModel>
+@{
+    ViewData["Title"] = "مدیریت سفارش‌ها";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h5 class="mb-0">لیست سفارش‌ها (@Model.Count() سفارش)</h5>
+    <div>
+        <span class="badge badge-warning p-2">
+            ⏳ در انتظار: @Model.Count(o => !o.IsFinalized)
+        </span>
+        <span class="badge badge-success p-2 mr-2">
+            ✅ نهایی شده: @Model.Count(o => o.IsFinalized)
+        </span>
+    </div>
+</div>
+
+<div class="card border-0 shadow-sm">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>کاربر</th>
+                        <th>تاریخ</th>
+                        <th>تعداد آیتم</th>
+                        <th>مبلغ کل</th>
+                        <th>وضعیت</th>
+                        <th style="width:200px">عملیات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model)
+                    {
+                        <tr>
+                            <td class="text-muted">#@order.OrderId</td>
+                            <td>@order.UserEmail</td>
+                            <td class="text-muted small">@order.CreatedDate.ToString("yyyy/MM/dd HH:mm")</td>
+                            <td>@order.ItemCount عدد</td>
+                            <td class="fw-bold text-success">@order.TotalAmount.ToString("N0") تومان</td>
+                            <td>
+                                @if (order.IsFinalized)
+                                {
+                                    <span class="badge badge-success">✅ نهایی</span>
+                                }
+                                else
+                                {
+                                    <span class="badge badge-warning">⏳ در انتظار</span>
+                                }
+                            </td>
+                            <td>
+                                <a asp-action="OrderDetails" asp-route-id="@order.OrderId"
+                                   class="btn btn-sm btn-outline-info ml-1">جزئیات</a>
+
+                                @if (!order.IsFinalized)
+                                {
+                                    <form asp-action="FinalizeOrder" method="post" class="d-inline">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="id" value="@order.OrderId" />
+                                        <button type="submit" class="btn btn-sm btn-success ml-1"
+                                                onclick="return confirm('سفارش نهایی شود؟')">
+                                            نهایی کردن
+                                        </button>
+                                    </form>
+                                }
+
+                                <form asp-action="DeleteOrder" method="post" class="d-inline">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@order.OrderId" />
+                                    <button type="submit" class="btn btn-sm btn-outline-danger"
+                                            onclick="return confirm('آیا از حذف این سفارش مطمئن هستید؟')">
+                                        حذف
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

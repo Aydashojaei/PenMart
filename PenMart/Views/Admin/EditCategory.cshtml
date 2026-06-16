@@ -1,0 +1,71 @@
+@model PenMart.Models.Admin.AdminCategoryViewModel
+@{
+    ViewData["Title"] = "ویرایش دسته‌بندی";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<div class="card border-0 shadow-sm" style="max-width:600px;">
+    <div class="card-body p-4">
+        <form asp-action="EditCategory" method="post" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="Id" />
+
+            <div class="row g-3">
+                <div class="col-12">
+                    <label asp-for="CategoryName" class="form-label fw-semibold"></label>
+                    <input asp-for="CategoryName" class="form-control" />
+                    <span asp-validation-for="CategoryName" class="text-danger small"></span>
+                </div>
+
+                <div class="col-12">
+                    <label asp-for="Description" class="form-label fw-semibold"></label>
+                    <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="Description" class="text-danger small"></span>
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label fw-semibold">تصویر فعلی</label>
+                    @if (!string.IsNullOrEmpty(Model.ExistingImageUrl))
+                    {
+                        <div class="mb-2">
+                            <img src="@Url.Content(Model.ExistingImageUrl)"
+                                 style="max-height:120px; border-radius:8px; border:1px solid #ddd;" />
+                        </div>
+                    }
+
+                    <label asp-for="ImageFile" class="form-label fw-semibold">
+                        تصویر جدید (در صورت تمایل به تغییر)
+                    </label>
+                    <input asp-for="ImageFile" class="form-control" type="file"
+                           accept="image/*" onchange="previewImage(this)" />
+                    <div class="mt-2">
+                        <img id="imagePreview" src="#" alt="پیش‌نمایش"
+                             style="max-height:150px; display:none; border-radius:8px; border:1px solid #ddd;" />
+                    </div>
+                </div>
+
+                <div class="col-12 d-flex gap-2 mt-2">
+                    <button type="submit" class="btn btn-primary px-5">ذخیره تغییرات</button>
+                    <a asp-action="Categories" class="btn btn-outline-secondary px-4">انصراف</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var preview = document.getElementById('imagePreview');
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+}

@@ -1,0 +1,70 @@
+@model IEnumerable<PenMart.Models.Product>
+@{
+    ViewData["Title"] = "مدیریت محصولات";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h5 class="mb-0">لیست محصولات (@Model.Count() محصول)</h5>
+    <a asp-action="CreateProduct" class="btn btn-primary rounded-pill px-4">
+        ➕ محصول جدید
+    </a>
+</div>
+
+<div class="card border-0 shadow-sm">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th style="width:70px">تصویر</th>
+                        <th>نام محصول</th>
+                        <th>دسته‌بندی</th>
+                        <th>قیمت</th>
+                        <th>موجودی</th>
+                        <th style="width:160px">عملیات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var product in Model)
+                    {
+                        <tr>
+                            <td>
+                                <img src="@Url.Content(product.MainImageUrl ?? "/Images/no-image.png")"
+                                     class="product-thumb" alt="@product.Name" />
+                            </td>
+                            <td class="fw-semibold">@product.Name</td>
+                            <td>
+                                <span class="badge badge-secondary">@product.Category?.CategoryName</span>
+                            </td>
+                            <td class="text-success fw-bold">
+                                @product.Item?.Price.ToString("N0") تومان
+                            </td>
+                            <td>
+                                @if (product.Item?.QuantityInStock == 0)
+                                {
+                                    <span class="badge badge-danger">ناموجود</span>
+                                }
+                                else
+                                {
+                                    <span class="badge badge-success">@product.Item?.QuantityInStock عدد</span>
+                                }
+                            </td>
+                            <td>
+                                <a asp-action="EditProduct" asp-route-id="@product.Id"
+                                   class="btn btn-sm btn-outline-primary ml-1">ویرایش</a>
+
+                                <form asp-action="DeleteProduct" method="post" class="d-inline"
+                                      onsubmit="return confirm('آیا از حذف «@product.Name» مطمئن هستید؟');">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@product.Id" />
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">حذف</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

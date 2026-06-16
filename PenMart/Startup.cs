@@ -13,6 +13,8 @@ using Microsoft.Extensions.Hosting;
 using PenMart.Data;
 using PenMart.Data.Repositories;
 using PenMart.Models;
+using PenMart.Services;
+using PenMart.Data.Seed;
 
 namespace PenMart
 {
@@ -49,6 +51,17 @@ namespace PenMart
             services.AddScoped<IProductRepository, ProductRepository>();
             #endregion
 
+            #region IOC FileService
+
+            services.AddScoped<IFileService, FileService>();
+
+            #endregion
+
+            #region IOC Admin
+
+            services.AddScoped<IAdminRepository, AdminRepository>();
+
+            #endregion
 
             #region AddIdentity
 
@@ -78,6 +91,9 @@ namespace PenMart
             app.UseAuthentication();
 
             app.UseAuthorization();
+
+            // Seed admin role and default admin user on startup
+            AdminSeeder.SeedAsync(app.ApplicationServices).GetAwaiter().GetResult();
 
             app.UseEndpoints(endpoints =>
             {

@@ -1,0 +1,57 @@
+@model IEnumerable<PenMart.Models.Category>
+@{
+    ViewData["Title"] = "مدیریت دسته‌بندی‌ها";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h5 class="mb-0">لیست دسته‌بندی‌ها (@Model.Count() دسته)</h5>
+    <a asp-action="CreateCategory" class="btn btn-success rounded-pill px-4">
+        ➕ دسته‌بندی جدید
+    </a>
+</div>
+
+<div class="card border-0 shadow-sm">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th style="width:70px">تصویر</th>
+                        <th>نام دسته‌بندی</th>
+                        <th>توضیحات</th>
+                        <th>تعداد محصول</th>
+                        <th style="width:160px">عملیات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var cat in Model)
+                    {
+                        <tr>
+                            <td>
+                                <img src="@Url.Content(cat.Url ?? "/Images/no-image.png")"
+                                     class="product-thumb" alt="@cat.CategoryName" />
+                            </td>
+                            <td class="fw-semibold">@cat.CategoryName</td>
+                            <td class="text-muted small">@cat.Discription</td>
+                            <td>
+                                <span class="badge badge-info">@cat.Products.Count محصول</span>
+                            </td>
+                            <td>
+                                <a asp-action="EditCategory" asp-route-id="@cat.Id"
+                                   class="btn btn-sm btn-outline-primary ml-1">ویرایش</a>
+
+                                <form asp-action="DeleteCategory" method="post" class="d-inline"
+                                      onsubmit="return confirm('آیا از حذف «@cat.CategoryName» مطمئن هستید؟');">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@cat.Id" />
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">حذف</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

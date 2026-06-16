@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>پنل مدیریت | @ViewData["Title"]</title>
+    <link href="~/bootstrap-v4-rtl-master/dist/css/bootstrap-rtl.css" rel="stylesheet" />
+    <link href="https://cdn.rawgit.com/rastikerdar/sahel-font/v1.0.0-alpha23/dist/font-face.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Sahel', sans-serif;
+            background-color: #f0f2f5;
+        }
+
+        .admin-sidebar {
+            min-height: 100vh;
+            background: linear-gradient(180deg, #1a237e 0%, #283593 100%);
+            color: white;
+            width: 240px;
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 100;
+            box-shadow: -3px 0 10px rgba(0,0,0,0.2);
+        }
+
+        .admin-sidebar .brand {
+            padding: 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .admin-sidebar .nav-link {
+            color: rgba(255,255,255,0.8);
+            padding: 12px 20px;
+            transition: all 0.2s;
+            border-right: 3px solid transparent;
+        }
+
+        .admin-sidebar .nav-link:hover,
+        .admin-sidebar .nav-link.active {
+            color: white;
+            background: rgba(255,255,255,0.1);
+            border-right-color: #64b5f6;
+        }
+
+        .admin-sidebar .nav-link .icon {
+            margin-left: 8px;
+            width: 20px;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .admin-content {
+            margin-right: 240px;
+            padding: 0;
+        }
+
+        .admin-topbar {
+            background: white;
+            padding: 15px 25px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .admin-main {
+            padding: 25px;
+        }
+
+        .stat-card {
+            border-radius: 12px;
+            border: none;
+            color: white;
+            padding: 20px;
+            transition: transform 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .stat-card .number {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            vertical-align: middle;
+        }
+
+        .table td {
+            vertical-align: middle;
+        }
+
+        .badge-pending {
+            background-color: #ff9800;
+        }
+
+        .badge-done {
+            background-color: #4caf50;
+        }
+
+        .product-thumb {
+            width: 55px;
+            height: 55px;
+            object-fit: contain;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="admin-sidebar">
+        <div class="brand">
+            🖋️ پنل مدیریت
+        </div>
+        <nav class="mt-3">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link @(ViewContext.RouteData.Values["action"]?.ToString() == "Index" ? "active" : "")"
+                       asp-controller="Admin" asp-action="Index">
+                        <span class="icon">📊</span> داشبورد
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link @(ViewContext.RouteData.Values["action"]?.ToString()?.StartsWith("Product") == true ? "active" : "")"
+                       asp-controller="Admin" asp-action="Products">
+                        <span class="icon">📦</span> محصولات
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link @(ViewContext.RouteData.Values["action"]?.ToString()?.StartsWith("Category") == true ? "active" : "")"
+                       asp-controller="Admin" asp-action="Categories">
+                        <span class="icon">🗂️</span> دسته‌بندی‌ها
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link @(ViewContext.RouteData.Values["action"]?.ToString()?.StartsWith("Order") == true ? "active" : "")"
+                       asp-controller="Admin" asp-action="Orders">
+                        <span class="icon">🛒</span> سفارش‌ها
+                    </a>
+                </li>
+                <li class="nav-item mt-4">
+                    <a class="nav-link" asp-controller="Home" asp-action="Index">
+                        <span class="icon">🏠</span> بازگشت به سایت
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Account" asp-action="LogOut">
+                        <span class="icon">🚪</span> خروج
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main content -->
+    <div class="admin-content">
+        <!-- Top bar -->
+        <div class="admin-topbar">
+            <h5 class="mb-0 fw-bold text-dark">@ViewData["Title"]</h5>
+            <span class="text-muted small">خوش آمدید، <strong>@User.Identity.Name</strong></span>
+        </div>
+
+        <div class="admin-main">
+            <!-- Alert messages -->
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    ✅ @TempData["Success"]
+                    <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+                </div>
+            }
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    ❌ @TempData["Error"]
+                    <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+                </div>
+            }
+
+            @RenderBody()
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

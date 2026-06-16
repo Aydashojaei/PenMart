@@ -1,0 +1,101 @@
+@model PenMart.Models.Admin.AdminOrderDetailViewModel
+@{
+    ViewData["Title"] = $"جزئیات سفارش #{Model.OrderId}";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<div class="mb-3">
+    <a asp-action="Orders" class="btn btn-outline-secondary btn-sm">← بازگشت به لیست</a>
+</div>
+
+<!-- Order info card -->
+<div class="card border-0 shadow-sm mb-4">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-3">
+                <small class="text-muted">شماره سفارش</small>
+                <div class="fw-bold">#@Model.OrderId</div>
+            </div>
+            <div class="col-md-3">
+                <small class="text-muted">کاربر</small>
+                <div class="fw-bold">@Model.UserEmail</div>
+            </div>
+            <div class="col-md-3">
+                <small class="text-muted">تاریخ ثبت</small>
+                <div class="fw-bold">@Model.CreatedDate.ToString("yyyy/MM/dd HH:mm")</div>
+            </div>
+            <div class="col-md-3">
+                <small class="text-muted">وضعیت</small>
+                <div>
+                    @if (Model.IsFinalized)
+                    {
+                        <span class="badge badge-success p-2">✅ نهایی شده</span>
+                    }
+                    else
+                    {
+                        <span class="badge badge-warning p-2">⏳ در انتظار پرداخت</span>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Order items -->
+<div class="card border-0 shadow-sm">
+    <div class="card-header bg-white fw-bold">آیتم‌های سفارش</div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table mb-0">
+                <thead>
+                    <tr>
+                        <th>تصویر</th>
+                        <th>نام محصول</th>
+                        <th>قیمت واحد</th>
+                        <th>تعداد</th>
+                        <th>جمع</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var detail in Model.OrderDetails)
+                    {
+                        <tr>
+                            <td>
+                                <img src="@Url.Content(detail.product?.MainImageUrl ?? "/Images/no-image.png")"
+                                     class="product-thumb" />
+                            </td>
+                            <td class="fw-semibold">@detail.product?.Name</td>
+                            <td>@detail.Price.ToString("N0") تومان</td>
+                            <td>@detail.Count</td>
+                            <td class="text-success fw-bold">
+                                @((detail.Count * detail.Price).ToString("N0")) تومان
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr class="table-light">
+                        <td colspan="4" class="text-left fw-bold">جمع کل:</td>
+                        <td class="text-success fw-bold fs-5">
+                            @Model.TotalAmount.ToString("N0") تومان
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
+@if (!Model.IsFinalized)
+{
+    <div class="mt-3">
+        <form asp-action="FinalizeOrder" method="post" class="d-inline">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="id" value="@Model.OrderId" />
+            <button type="submit" class="btn btn-success px-5"
+                    onclick="return confirm('آیا از نهایی کردن این سفارش مطمئن هستید؟')">
+                ✅ نهایی کردن سفارش
+            </button>
+        </form>
+    </div>
+}
