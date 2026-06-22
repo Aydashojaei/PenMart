@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PenMart.Data.Repositories;
 using PenMart.Models;
+using System.Linq;
 
 namespace PenMart.Controllers
 {
@@ -35,5 +36,18 @@ namespace PenMart.Controllers
             };
             return View(vm);
         }
+
+        public IActionResult ShowAllProduct()
+        {
+            var allproducts = _productRepository.GetAllProducts().Select(p => new ProductViewModel
+            {
+                Name = p.Name,
+                Price = p.Item.Price,
+                Url = p.MainImageUrl
+            }).ToList();
+            return View("ShowAllProduct", allproducts);
+        }
+
+        
     }
 }

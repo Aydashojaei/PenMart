@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PenMart.Data;
+using PenMart.Data.Repositories;
 using PenMart.Models;
 
 namespace PenMart.Controllers
@@ -13,6 +14,7 @@ namespace PenMart.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        
 
         // Database context injected via Dependency Injection
         // This allows the controller to access the database using EF Core
@@ -20,14 +22,16 @@ namespace PenMart.Controllers
 
 
         // Constructor: dependencies are injected automatically
-        public HomeController(ILogger<HomeController> logger, PenMartContext context)
+        public HomeController(ILogger<HomeController> logger, PenMartContext context,IProductRepository productRepository)
         {
             _logger = logger;
             _context = context;
+           
         }
 
         public IActionResult Index()
         {
+          
             return View();
         }
 
