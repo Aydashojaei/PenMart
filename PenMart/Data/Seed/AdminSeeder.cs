@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using PenMart.Models;
 using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
 namespace PenMart.Data.Seed
 {
@@ -13,14 +14,20 @@ namespace PenMart.Data.Seed
     public static class AdminSeeder
     {
         private const string AdminRole = "Admin";
-        private const string AdminEmail = "admin@penmart.ir";
-        private const string AdminPassword = "Admin@123456";
+        // Fallback values used only if "AdminSeed" is missing from configuration
+        private const string DefaultAdminEmail = "admin@penmart.ir";
+        private const string DefaultAdminPassword = "Admin@123456";
 
         public static async Task SeedAsync(IServiceProvider serviceProvider)
         {
+      
             using var scope = serviceProvider.CreateScope();
+            var configuration = scope.ServiceProvider.GetRequiredService<IConfiguration>();
             var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+
+            var adminEmail = configuration["AdminSeed:Email"] ?? DefaultAdminEmail;
+            var adminPassword = configuration["AdminSeed:Password"] ?? DefaultAdminPassword;
 
             // Create "Admin" role if it doesn't exist
             if (!await roleManager.RoleExistsAsync(AdminRole))
@@ -29,19 +36,19 @@ namespace PenMart.Data.Seed
             }
 
             // Create default admin user if it doesn't exist
-            var adminUser = await userManager.FindByEmailAsync(AdminEmail);
+            var adminUser = await userManager.FindByEmailAsync(adminEmail);
             if (adminUser == null)
             {
                 adminUser = new ApplicationUser
                 {
-                    UserName = AdminEmail,
-                    Email = AdminEmail,
+                    UserName = adminEmail,
+                    Email = adminEmail,
                     RegisterDate = DateTime.Now,
                     IsAdmin = true,
                     EmailConfirmed = true
                 };
 
-                var result = await userManager.CreateAsync(adminUser, AdminPassword);
+                var result = await userManager.CreateAsync(adminUser, adminPassword);
                 if (result.Succeeded)
                 {
                     await userManager.AddToRoleAsync(adminUser, AdminRole);
